@@ -20,6 +20,8 @@ jobs:
         with:
           version: "latest"
           project_id: ${{ secrets.GKE_PROJECT_ID }}
+      - name: Install gke-gcloud-auth-plugin
+        run: gcloud components install gke-gcloud-auth-plugin
       - name: Configure kubectl
         run: gcloud container clusters get-credentials ${{secrets.GKE_CLUSTER_NAME}} --region=${{secrets.GKE_REGION}} --project=${{ secrets.GKE_PROJECT_ID }}
       - run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
