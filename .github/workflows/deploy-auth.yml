@@ -18,11 +18,18 @@ jobs:
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       - run: docker push vishnumohanan/auth
       
-      - name: Set up Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@master
+      - name: Authenticate with Google Cloud
+        uses: 'google-github-actions/auth@v2'
         with:
-          version: 'latest'
-          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          credentials_json: ${{ secrets.GKE_SA_KEY }}
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          version: "latest"
+          project_id: ${{ secrets.GKE_PROJECT_ID }}
+      - name: Install gke-gcloud-auth-plugin
+        run: gcloud components install gke-gcloud-auth-plugin
+        
       - name: Configure kubectl
         run: gcloud container clusters get-credentials ${{secrets.GKE_CLUSTER_NAME}} --region=GKE_REGION --project=GKE_PROJECT_ID
       - run: kubectl rollout restart deployment auth-depl
