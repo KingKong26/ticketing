@@ -5,7 +5,7 @@ export default ({ req }) => {
     // We are on the server side render
     return axios.create({
       baseURL:
-        "http://ticketing.vishnuverse.xyz/",
+        "http://ticketing.vishnuverse.xyz",
       headers: req.headers,
     });
   } else {
