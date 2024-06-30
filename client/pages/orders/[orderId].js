@@ -23,18 +23,41 @@ const OrderShow = ({ order, currentUser }) => {
     };
   }, [order]);
   if (timeLeft < 0) {
-    return <div>Order expired</div>;
+    return (
+      <div className="m-5">
+        <p className="text-red-600 font-medium text-lg mb-3">Order expired!!</p>
+      </div>
+    );
   }
-  console.log(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY, "key");
+  console.log(order, "key");
   return (
-    <div>
-      Time Left to pay: {timeLeft} seconds
-      <StripeCheckout
-        token={({ id }) => doRequest({ token: id })}
-        stripeKey={process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY}
-        amount={order.ticket.price * 100}
-        email={currentUser.email}
-      />
+    <div className="m-5">
+      <p className="text-muted-foreground font-medium text-lg mb-3">
+        Order: {order.id}
+      </p>
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
+          <h4 className="text-lg font-semibold text-gray-600">
+            Title: <span className="pl-4"> {order.ticket.title}</span>
+          </h4>
+          <h4 className="text-lg font-semibold text-gray-600">
+            Price: <span className="pl-4"> {order.ticket.price}</span>
+          </h4>
+          <h4 className="text-lg font-semibold text-gray-600 pb-1">
+            Status: <span className="pl-4 capitalize"> {order.status}</span>
+          </h4>
+        </div>
+        <h4 className="text-lg font-semibold text-muted-foreground pb-3">
+          Time Left to pay: {timeLeft} seconds
+        </h4>
+
+        <StripeCheckout
+          token={({ id }) => doRequest({ token: id })}
+          stripeKey={process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY}
+          amount={order.ticket.price * 100}
+          email={currentUser.email}
+        />
+      </div>
       {errors}
     </div>
   );

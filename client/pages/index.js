@@ -1,32 +1,40 @@
 import Link from "next/link";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const LandingPage = ({ tickets }) => {
-  const ticketList = tickets.map((ticket) => {
-    return (
-      <tr key={ticket.id}>
-        <td>{ticket.title}</td>
-        <td>{ticket.price}</td>
-        <td>
-          <Link href={"/tickets/[ticketId]"} as={`/tickets/${ticket.id}`}>
-            View
-          </Link>
-        </td>
-      </tr>
-    );
-  });
   return (
-    <div>
-      <h2>Tickets</h2>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Link</th>
-          </tr>
-        </thead>
-        <tbody>{ticketList}</tbody>
-      </table>
+    <div className="items-center m-5">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="">Title</TableHead>
+            <TableHead>Link</TableHead>
+            <TableHead className="text-right">Price</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {tickets.map((ticket) => (
+            <TableRow key={ticket.id}>
+              <TableCell className="font-medium">{ticket.title}</TableCell>
+              <TableCell>
+                <Link href={"/tickets/[ticketId]"} as={`/tickets/${ticket.id}`} className="text-blue-600 cursor-pointer hover:underline">
+                  View
+                </Link>
+              </TableCell>
+              <TableCell className="text-right">{ticket.price}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   );
 };

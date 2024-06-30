@@ -1,6 +1,17 @@
 import { useState } from "react";
 import useRequest from "../../hooks/use-request";
 import Router from "next/router";
+// form
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const NewTicket = () => {
   const [title, setTitle] = useState("");
@@ -26,34 +37,46 @@ const NewTicket = () => {
   };
 
   return (
-    <div>
-      <h1>Create a ticket</h1>
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            name="title"
-            className="form-control"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="price">Price</label>
-          <input
-            type="text"
-            name="price"
-            className="form-control"
-            value={price}
-            onBlur={onBlur}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-        </div>
-        {errors}
-        <button className="btn btn-primary">Submit</button>
-      </form>
-    </div>
+    <form onSubmit={onSubmit} className="flex justify-center items-center h-full">
+      <Card className="mx-auto max-w-sm flex-1">
+        <CardHeader>
+          <CardTitle className="text-2xl">Create Ticket</CardTitle>
+          <CardDescription>Enter your ticket details</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4">
+            <div className="grid gap-2">
+              <Label htmlFor="title">Title</Label>
+              <Input
+                id="title"
+                type="text"
+                placeholder="Ticket Title"
+                required
+                name="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
+            <div className="grid gap-2">
+              <div className="flex items-center">
+                <Label htmlFor="price">Price</Label>
+              </div>
+              <Input
+                id="price"
+                type="price"
+                placeholder="Ticket Price"
+                required
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </div>
+            <Button type="submit" className="w-full">
+              Enter
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </form>
   );
 };
 
