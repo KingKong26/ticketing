@@ -13,5 +13,9 @@ export default () => {
   useEffect(() => {
     doRequest();
   }, []);
-  return <div>Signing you out...</div>;
+  return (
+    <div className="m-5 text-muted-foreground text-lg font-semibold">
+      Signing you out...
+    </div>
+  );
 };
