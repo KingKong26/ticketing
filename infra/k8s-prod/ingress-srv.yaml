@@ -5,12 +5,12 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    # cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
-  tls:
-    - hosts:
-        - ticketing.visnuverse.xyz
-      secretName: ticketing-tls
+  # tls:
+  #   - hosts:
+  #       - ticketing.visnuverse.xyz
+  #     secretName: ticketing-tls
   rules:
     - host: ticketing.vishnuverse.xyz
       http:
