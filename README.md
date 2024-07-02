@@ -39,5 +39,5 @@ run `skaffold dev`
 
 ## Future Scopes
 
-- IaC - the infrastructure is provisioned manually, resulting in overheads and downtimes.
-- Automation - we are manually setting up infra to even generating the HTTPS certificates, this means we have to wait until all dependencies have been settled.
+- IaC: the infrastructure is provisioned manually, resulting in overheads and downtimes.
+- Automation & Overall lack of if: we are manually setting up infra to even generating the HTTPS certificates, this means we have to wait until all dependencies have been settled.
