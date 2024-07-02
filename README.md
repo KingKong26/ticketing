@@ -28,4 +28,16 @@ skaffold for local development
 run `skaffold dev`
 
 ### Architecture
+
 ![Diagram](assets/architecture.svg)
+
+### Challenges
+
+- Running on a free credit tier the resource utilization may break some pods at times, which requires manual interventions to resolve the issue
+- Whenever there is an application crashing there is no single point of logs to be reported for debugging the issue
+- The TLS/HTTPS Certificate is generated manually, which means overall the application lacks automation of trivial tasks
+
+## Future Scopes
+
+- IaC - the infrastructure is provisioned manually, resulting in overheads and downtimes.
+- TLS/HTTPS Automation - we are manually generating the HTTPS Certificate after the application is up and running, this means we have to wait until all dependencies have been settled
