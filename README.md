@@ -40,4 +40,4 @@ run `skaffold dev`
 ## Future Scopes
 
 - IaC - the infrastructure is provisioned manually, resulting in overheads and downtimes.
-- TLS/HTTPS Automation - we are manually generating the HTTPS Certificate after the application is up and running, this means we have to wait until all dependencies have been settled
+- Automation - we are manually setting up infra to even generating the HTTPS certificates, this means we have to wait until all dependencies have been settled.
